@@ -1,13 +1,9 @@
 import fastify from "fastify";
-import { knexClient } from "./database";
+import { usersRoutes } from "./routes/users";
 
 const app = fastify();
 
-app.get("/", async (request, reply) => {
-  const test = await knexClient('sqlite_schema').select('*')
-
-  return test
-});
+app.register(usersRoutes)
 
 app.listen({
   port: 3333
